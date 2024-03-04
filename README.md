@@ -10,10 +10,10 @@ ControlNet-Segment AI Model : https://replicate.com/jagilley/controlnet-seg?inpu
 npx create-replicate --model=jagilley/controlnet-seg
 ```
 - it will bring you to copy and paste your replicate token from its website
-- once you paste the token hit enter, make sure the *.env file's token is also updated :
+- once you paste the token hit enter, make sure the <strong> .env </strong> file's token is also updated :
 
 ```console
-REPLICATE_API_TOKEN="YOUR_TOKEN_VALUE_HERE" // in .env file
+REPLICATE_API_TOKEN="YOUR_TOKEN_VALUE_HERE" 
 ```
 
 ```console
