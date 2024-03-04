@@ -10,13 +10,19 @@ ControlNet-Segment AI Model : https://replicate.com/jagilley/controlnet-seg?inpu
 npx create-replicate --model=jagilley/controlnet-seg
 ```
 - it will bring you to copy and paste your replicate token from its website
-- once you paste the token, type in : 
+- once you paste the token hit enter, make sure the *.env file's token is also updated :
+
+```console
+REPLICATE_API_TOKEN="YOUR_TOKEN_VALUE_HERE" // in .env file
+```
 
 ```console
 node index.js
 ```
 
-- then open localhost://3000 in your brower
+- then open localhost://3000 in your brower and you should see this :
+![image](https://github.com/ArchiTechYT/adingo/assets/94740656/4907f3a5-232a-438a-abb1-dcc86bd8267c)
+
 
 
 
