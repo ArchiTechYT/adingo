@@ -9,7 +9,7 @@ To get started, you'll need Node.js 18 or later. The simplest way to install it 
 Next, grab a Replicate API token from [replicate.com/account](http://replicate.com/account) and set it as an environment variable:
 
 
-# ControlNet-Segment AI Model reference : 
+## ControlNet-Segment AI Model reference : 
 https://replicate.com/jagilley/controlnet-seg?input=nodejs
 
 
@@ -18,5 +18,11 @@ ONE LINE CODE VERSION
 ```console
 npx create-replicate --model=jagilley/controlnet-seg
 ```
+
+```console
+node index.js
+```
+
+and open localhost://3000
 
 
