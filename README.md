@@ -16,7 +16,7 @@ npx create-replicate --model=jagilley/controlnet-seg
 node index.js
 ```
 
-and open localhost://3000
+- then open localhost://3000 in your brower
 
 
 
