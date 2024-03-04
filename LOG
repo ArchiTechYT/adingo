@@ -1,0 +1,11 @@
+// To learn the basic of express
+// like post / get / send / render etc
+// to check why we cannot use the document related commend... function
+// to check alternative way to achieve the same goal
+// no-code version?
+// wix can we integrate the code?
+// maybe just new marketing
+
+// open terminal
+// (1) npx create-replicate --model=jagilley/controlnet-seg
+// (2) node index.js

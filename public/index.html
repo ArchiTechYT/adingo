@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A'DINGO prototype</title>
+  </head>
+  <body>
+    <h1>A'DINGO</h1>
+    <img
+      src="https://replicate.delivery/pbxt/JzqJT0IKIqr5ivqi5vnWeFctz52kTlhnBqR2OcK1NJYFsfYx/a-room-at-the-beach.jpeg"
+      width="640"
+      height="425"
+    />
+    <br />
+    <br />
+    <h4>Select the style you like:</h4>
+    <br />
+    <select id="style">
+      <option value="min">Minimalism</option>
+      <option value="mod">Modernism</option>
+      <option value="art">ArtDeco</option>
+    </select>
+    <input type="submit" id="btn_submit" value="submit" />
+
+    <h1>AI-Design Result Display</h1>
+    <%= imgTag %>
+    <script src="../index.js" type="text"></script>
+  </body>
+</html>
