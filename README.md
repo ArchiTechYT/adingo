@@ -16,11 +16,15 @@ npx create-replicate --model=jagilley/controlnet-seg
 REPLICATE_API_TOKEN="YOUR_TOKEN_VALUE_HERE" 
 ```
 
+- then input the following in terminal
+  
 ```console
 node index.js
 ```
 
 - then open localhost://3000 in your brower and you should see this :
+
+
 ![image](https://github.com/ArchiTechYT/adingo/assets/94740656/4907f3a5-232a-438a-abb1-dcc86bd8267c)
 
 
