@@ -1,4 +1,6 @@
 
+## Adingo prototype 
+
 ControlNet-Segment AI Model : https://replicate.com/jagilley/controlnet-seg?input=nodejs
 
 ONE LINE CODE VERSION
