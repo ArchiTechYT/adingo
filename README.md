@@ -1,16 +1,15 @@
 # adingo
-adingo mvp prototype
 
+mvp prototype
 
-reference : 
+*** reference : https://replicate.com/jagilley/controlnet-seg?input=nodejs 
 
-
-instruction : 
+*** instruction : 
 
 (1) open VScode terminal 
 
 (2) in terminal type in : 
-    npx create-replicate --model=jagilley/controlnet-seg
+    <p>npx create-replicate --model=jagilley/controlnet-seg</p>
 
 (3) browser will open and ask you to copy your replicate token
 
