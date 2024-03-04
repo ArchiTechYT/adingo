@@ -3,11 +3,15 @@
 
 ControlNet-Segment AI Model : https://replicate.com/jagilley/controlnet-seg?input=nodejs
 
-ONE LINE CODE VERSION
+- open visual studio code
+- open terminal and type in :
 
 ```console
 npx create-replicate --model=jagilley/controlnet-seg
 ```
+- it will bring you to copy and paste your replicate token from its website
+- once you paste the token, type in : 
+
 ```console
 node index.js
 ```
