@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/style.css">
+    <title>A'DINGO</title>
+</head>
+<body>
+    <h1>A'DINGO</h1>
+    <img
+      src="https://replicate.delivery/pbxt/JzqJT0IKIqr5ivqi5vnWeFctz52kTlhnBqR2OcK1NJYFsfYx/a-room-at-the-beach.jpeg"
+      width="640"
+      height="425"
+    />
+    <br />
+    <br />
+    <h4>Select the style you like:</h4>
+    <br />
+    <select id="style">
+      <option value="min">Minimalism</option>
+      <option value="mod">Modernism</option>
+      <option value="art">ArtDeco</option>
+    </select>
+    <button id="btn_submit">Submit</button>
+    <button id="btn_clear">Clear Image</button>
+
+    <h1>AI-Design Result Display</h1>
+    
+    <img src="" id="aiResultImage" />
+    
+    <script>
+      var imgurl = '';
+
+      async function generateImage(style) {
+        try {
+          const response = await fetch('/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ action: 'generate', style })
+            
+          });
+          console.log("response: ", response)
+          const data = await response.json();
+          console.log("data: ", data)
+          imgurl = data.imgurl;
+          console.log("imgurl: ", imgurl)
+          document.getElementById('aiResultImage').src = imgurl;
+        } catch (error) {
+          console.error('Error generating image:', error);
+        }
+      }
+
+      async function clearImage() {
+        try {
+          const response = await fetch('/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ action: 'clear' }),
+          });
+          const data = await response.json();
+          imgurl = data.imgurl;
+          document.getElementById('aiResultImage').src = imgurl;
+        } catch (error) {
+          console.error('Error clearing image:', error);
+        }
+      }
+
+      document.getElementById('btn_submit').addEventListener('click', function() {
+        var selectedStyle = document.getElementById('style').value;
+        console.log(selectedStyle)
+        generateImage(selectedStyle);
+      });
+
+      document.getElementById('btn_clear').addEventListener('click', function() {
+        clearImage();
+      });
+    </script>
+  </body>
+</html>

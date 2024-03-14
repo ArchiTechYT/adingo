@@ -1,18 +1,17 @@
 {
-  "name": "my-replicate-app",
+  "name": "adingo_v2",
   "version": "1.0.0",
-  "private": true,
-  "description": "A starter for testing out Replicate's API",
+  "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.4.1",
-    "ejs": "^3.1.9",
-    "express": "^4.18.2",
-    "jsdom": "^24.0.0",
-    "replicate": "*"
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.6",
+    "express": "^4.18.3",
+    "replicate": "^0.27.1"
   }
 }
