@@ -11,7 +11,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.static(path.join(__dirname, 'public')));
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
-
 // parse application/json
 app.use(bodyParser.json())
 const replicate = new Replicate({
@@ -25,9 +24,10 @@ const model = "jagilley/controlnet-seg:f967b165f4cd2e151d11e7450a8214e5d22ad2007
 let imgurl = '';
 
 const promptStrMap = {
-  'min': 'white oak wood floor, cinematic, minimalist apartment bedroom, modernism furnishings, beige and white tone, fabric,natural sunlight, Photograph, contemporary living room, soft light of morning, integration matte stone features wall, unified color scheme of soothing white tones, creating a white and inviting atmosphere, full height window with balcony, a minimalist bed and furniture',
-  'mod': 'bedroom, industrial vibe, raw and rugged elements with sleek, modern accents. Incorporate metal, exposed concrete. Consider minimalist furniture, vintage lighting fixtures, and urban-inspired decor to complete the look.',
-  'art': '' // Add your ArtDeco prompt here
+  'Scandistyle': 'white oak wood floor, cinematic, minimalist apartment bedroom, modernism furnishings, beige and white tone, fabric,natural sunlight, Photograph, contemporary living room, soft light of morning, integration matte stone features wall, unified color scheme of soothing white tones, creating a white and inviting atmosphere, full height window with balcony, a minimalist bed and furniture',
+  'Jaapanesestyle': 'bedroom, industrial vibe, raw and rugged elements with sleek, modern accents. Incorporate metal, exposed concrete. Consider minimalist furniture, vintage lighting fixtures, and urban-inspired decor to complete the look.',
+  'Naturalstyle': 'bedroom, natural vibe',
+  'Aegeanstyle': 'bedroom, Aegean style'
 };
 
 app.get('/', (req, res) => {
@@ -47,6 +47,10 @@ app.post('/', async (req, res) => {
 
     const promptStr = promptStrMap[selectedStyle];
 
+    // Retrieve budget and timeline ranges from the request body
+    const budgetRange = req.body.budgetRange;
+    const timelineRange = req.body.timelineRange;
+
     const input = {
       image: "https://replicate.delivery/pbxt/JzqJT0IKIqr5ivqi5vnWeFctz52kTlhnBqR2OcK1NJYFsfYx/a-room-at-the-beach.jpeg",
       scale: 1,
@@ -62,6 +66,8 @@ app.post('/', async (req, res) => {
     console.log('Received request to generate image with the following parameters:');
     console.log('Selected Style:', selectedStyle);
     console.log('Prompt String:', promptStr);
+    console.log('Budget Range:', budgetRange); 
+    console.log('Timeline Range:', timelineRange);
 
     try {
       console.log("Running Replicate...");
