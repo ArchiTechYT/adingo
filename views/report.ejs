@@ -1,0 +1,129 @@
+<!-- report.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Love It Page</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mt-5 {
+            margin-top: 3rem !important;
+        }
+
+        .mt-4 {
+            margin-top: 2.5rem !important;
+        }
+
+        .container {
+            margin-top: 3rem;
+        }
+
+        h2 {
+            color: #343a40;
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        ul li {
+            margin-bottom: 5px;
+        }
+
+        .position-relative {
+            position: relative;
+        }
+
+        .img-fluid {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .btn-orange {
+            background-color: orange;
+            color: white;
+            font-weight: bold;
+        }
+
+        .purchase-report {
+            color: orange;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-6">
+                <!-- Upper section - Materials -->
+                <h2 class="text-center">Materials</h2>
+                <ul>
+                    <!-- List of materials -->
+                    <li>Material 1</li>
+                    <li>Material 2</li>
+                    <li>Material 3</li>
+                    <!-- Add more materials as needed -->
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <!-- AI Design Result Display section -->
+                <div class="position-relative">
+                    <h1 class="text-center">AI-Design Result Display</h1>
+                    <div class="position-relative">
+                        <img src="<%= aiResultImageURL %>" class="img-fluid mx-auto d-block" alt="AI Generated Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-5">
+            <div class="col-md-6">
+                <!-- Lower section - Contractors & Suppliers -->
+                <h2 class="text-center">Contractors & Suppliers</h2>
+                <ul>
+                    <!-- List of contractors & suppliers -->
+                    <li>Contractor 1</li>
+                    <li>Contractor 2</li>
+                    <li>Contractor 3</li>
+                    <!-- Add more contractors & suppliers as needed -->
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <!-- Total Cost -->
+                <h2 class="text-center">Total Cost:</h2>
+                <p class="text-center">$ How Much Dollars</p>
+                <!-- Button section -->
+                <div class="text-center mt-4">
+                    <h2 class="purchase-report">Purchase Report</h2>
+                    <button class="btn btn-orange">$19.99</button>
+                     <!-- Back button -->
+                    <button class="btn btn-secondary back-btn" onclick="goBack()">Back</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- JavaScript to go back to the previous page -->
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+</body>
+</html>

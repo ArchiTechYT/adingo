@@ -9,10 +9,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- Add this line in the <head> section of your HTML -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.css">
 
-    <!-- Custom CSS -->
-    <style>
+        <!-- Custom CSS -->
+        <style>
           body {
             background-color: #f8f9fa;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Replace with your preferred font */
@@ -55,10 +55,11 @@
     </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center mb-4">A'DINGO</h1>
-        <div class="row justify-content-center">
-            <div class="col-md-6 text-center">
+ <div class="container mt-5">
+    <h1 class="text-center mb-4">A'DINGO</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="text-center">
                 <p class="adjust-criteria">Adjust your criteria</p>
                 <p class="reorder-text">Drag & drop to reorder</p>
 
@@ -69,20 +70,30 @@
                 </div>
                 <div class="form-group">
                     <label for="style">Style:</label>
-                    <input type="text" id="style" class="form-control" readonly>
+                    <select id="style" class="form-control">
+                        <option value="Scandistyle">Scandistyle</option>
+                        <option value="Jaapanesestyle">Jaapanesestyle</option>
+                        <option value="Naturalstyle">Naturalstyle</option>
+                        <option value="Aegeanstyle">Aegeanstyle</option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="timelineRange">Timeline (in months):</label>
+                    <label for="timelineRange">Timeline (in <span id="timelineMonth">0</span> months):</label>
                     <div id="timelineSlider" class="slider"></div>
                     <output id="timelineValue">0 months</output>
                 </div>
-                <button id="btn_submit" class="btn btn-primary">Generate</button>
-                <button id="btn_clear" class="btn btn-secondary">Clear Image</button>
-            </div>
-            <div class="col-md-6">
                 <h4 class="text-center mb-4" style="color: #343a40; font-weight: bold; text-transform: capitalize;">Uploaded photo</h4>
                 <img src="https://replicate.delivery/pbxt/JzqJT0IKIqr5ivqi5vnWeFctz52kTlhnBqR2OcK1NJYFsfYx/a-room-at-the-beach.jpeg"
-                    width="100%" height="auto" alt="Sample Image">
+                width="100%" height="auto" alt="Sample Image">
+                <div class="buttons-section">
+                    <button id="btn_submit" class="btn btn-primary">Generate</button>
+                    <button id="btn_clear" class="btn btn-secondary">Clear Image</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="text-center" style="height: 100%;">
+                <h4 class="text-center mb-4" style="color: #343a40; font-weight: bold; text-transform: capitalize;">Styled Images</h4>
                 <div class="image-container">
                     <img src="/images/aegean_style.png" alt="aegean_style">
                     <img src="/images/scandi_style.png" alt="scandi_style">
@@ -90,31 +101,44 @@
                     <img src="/images/japanese_style.png" alt="japanese_style">
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="text-center">AI-Design Result Display</h1>
-                <img src="" id="aiResultImage" class="img-fluid mx-auto d-block" alt="AI Generated Image">
-            </div>
-        </div>
-    </div>
+            <div class="row">
+              <div class="col-md-12">
+                    <!-- AI Design Result Display section -->
+                    <div class="position-relative">
+                        <h1 class="text-center">AI-Design Result Display</h1>
+                        <div class="position-relative">
+                            <img src="" id="aiResultImage" class="img-fluid mx-auto d-block" alt="AI Generated Image">
+                            
+                        </div>
+                    </div>
+                </div>
 
-    <!-- Bootstrap JS and Custom Script -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
-    <script>
+            </div>
+        </div>      
+    </div>
+</div>
+
+
+<!-- Bootstrap JS and Custom Script -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/noUiSlider/14.6.3/nouislider.min.js"></script>
+<script>
+
+    // Define aiResultImage as a global variable
+    let aiResultImage;
+
         // Initialize noUiSlider for budget range
-        var budgetSlider = document.getElementById('budgetSlider');
-        noUiSlider.create(budgetSlider, {
+    var budgetSlider = document.getElementById('budgetSlider');
+    noUiSlider.create(budgetSlider, {
             start: [0, 10000], // Initial range values
             connect: true, // Connect handles with a line
             range: {
                 'min': 0,
                 'max': 20000
             },
-            step: 5000, // Set step size to 5000
+            step: 1, // Set step size to 1
             pips: {
                 mode: 'values',
                 values: [0, 5000, 10000, 15000, 20000],
@@ -122,29 +146,66 @@
             }
         });
 
-        // Initialize noUiSlider for timeline range
-        var timelineSlider = document.getElementById('timelineSlider');
-        noUiSlider.create(timelineSlider, {
-            start: [0, 12], // Initial range values
-            connect: true, // Connect handles with a line
+        // Initialize single-end noUiSlider for timeline range
+    var timelineSlider = document.getElementById('timelineSlider');
+    noUiSlider.create(timelineSlider, {
+            start: 12, // Initial value
+            connect: 'lower', // Connect only the lower handle
             range: {
                 'min': 0,
-                'max': 36
+                'max': 12 // Set maximum timeline to 12 months
             },
             step: 1 // Set step size to 1
         });
 
+
+       /// Update timeline value based on slider change
+    timelineSlider.noUiSlider.on('update', function (value) {
+        var selectedMonths = Math.round(value);
+        document.getElementById('timelineValue').textContent = selectedMonths + ' months';
+        document.getElementById('timelineMonth').textContent = selectedMonths;
+    });
+
         // Update budget value based on slider change
-        budgetSlider.noUiSlider.on('update', function (values) {
-            document.getElementById('budgetValue').textContent = '$' + values.join(' - $');
+    budgetSlider.noUiSlider.on('update', function (values) {
+        document.getElementById('budgetValue').textContent = '$' + values.join(' - $');
+    });
+
+    document.querySelectorAll('.image-container img').forEach(image => {
+        image.addEventListener('mouseover', () => {
+            document.querySelectorAll('.image-container img').forEach(img => {
+                if (img !== image) {
+                        img.style.opacity = 0.3; // Dim other images
+                    }
+                });
+                image.style.opacity = 1; // Highlight hovered image
+            });
+
+        image.addEventListener('mouseout', () => {
+            document.querySelectorAll('.image-container img').forEach(img => {
+                    img.style.opacity = 1; // Reset opacity for all images
+                });
         });
 
-        // Update timeline value based on slider change
-        timelineSlider.noUiSlider.on('update', function (values) {
-            document.getElementById('timelineValue').textContent = Math.round(values[0]) + ' - ' + Math.round(values[1]) + ' months';
+        document.querySelectorAll('.image-container img').forEach(image => {
+            image.addEventListener('click', () => {
+                const selectedStyle = image.alt.split('_').join('').toLowerCase();
+                    document.getElementById('style').value = selectedStyle.charAt(0).toUpperCase() + selectedStyle.slice(1); // Update style text field with selected style
+                });
         });
+    });
 
-        var imgurl = '';
+
+       // Assuming there's a condition to determine whether to display styled images or AI result image
+        var displayStyledImages = true; // Set to true to display styled images, false to display AI result image
+
+        if (displayStyledImages) {
+            // Hide AI result image
+            document.getElementById('aiResultImage').style.display = 'none';
+        } else {
+            // Hide styled images
+            document.querySelector('.image-container').style.display = 'none';
+        }
 
         async function generateImage(style) {
             try {
@@ -153,15 +214,34 @@
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ action: 'generate', style })
+                    body: JSON.stringify({ action: 'generate', style, budget: budgetSlider.noUiSlider.get(), timeline: timelineSlider.noUiSlider.get() })
                 });
                 const data = await response.json();
-                imgurl = data.imgurl;
-                document.getElementById('aiResultImage').src = imgurl;
+                console.log(data)
+                // Assuming data.imgurl is an array of image URLs
+                const image = data.imgurl || undefined;
+                console.log('image:', image)
+                if (image) {
+                    aiResultImage = image; // Assign image URL to aiResultImage variable
+                    document.getElementById('aiResultImage').src = image;
+                } else {
+                    document.getElementById('aiResultImage').style.display = 'none';
+                }
+                console.log("aiResultImage: ", aiResultImage)
+                 // Display Love It button if aiResultImage has a value
+                if (aiResultImage) {
+                    const loveItButton = document.createElement('a');
+                    loveItButton.href = '/report?image=' + encodeURIComponent(aiResultImage);
+                    loveItButton.className = 'btn btn-primary position-absolute bottom-0 end-0 m-3';
+                    loveItButton.textContent = 'Love It';
+                    document.querySelector('.position-relative').appendChild(loveItButton);
+                }
+                
             } catch (error) {
                 console.error('Error generating image:', error);
             }
         }
+
 
         async function clearImage() {
             try {
@@ -173,47 +253,22 @@
                     body: JSON.stringify({ action: 'clear' }),
                 });
                 const data = await response.json();
-                imgurl = data.imgurl;
-                document.getElementById('aiResultImage').src = imgurl;
+                document.getElementById('aiResultImage').src = data.imgurl;
             } catch (error) {
                 console.error('Error clearing image:', error);
             }
         }
 
-        document.querySelectorAll('.image-container img').forEach(image => {
-            image.addEventListener('mouseover', () => {
-                document.querySelectorAll('.image-container img').forEach(img => {
-                    if (img !== image) {
-                        img.style.opacity = 0.3; // Dim other images
-                    }
-                });
-                image.style.opacity = 1; // Highlight hovered image
-            });
-
-            image.addEventListener('mouseout', () => {
-                document.querySelectorAll('.image-container img').forEach(img => {
-                    img.style.opacity = 1; // Reset opacity for all images
-                });
-            });
-
-             document.querySelectorAll('.image-container img').forEach(image => {
-                image.addEventListener('click', () => {
-                    const selectedStyle = image.alt.split('_').join('').toLowerCase();
-                    document.getElementById('style').value = selectedStyle.charAt(0).toUpperCase() + selectedStyle.slice(1); // Update style text field with selected style
-                });
-            });
-        });
-
         document.getElementById('btn_submit').addEventListener('click', function () {
-            var selectedStyle = document.getElementById('design').value;
+            var selectedStyle = document.getElementById('style').value;
             generateImage(selectedStyle);
         });
 
         document.getElementById('btn_clear').addEventListener('click', function () {
             clearImage();
         });
-    </script>
 
+    </script>
 
 </body>
 </html>
