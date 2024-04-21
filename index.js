@@ -59,7 +59,7 @@ app.post('/', async (req, res) => {
 
         // Retrieve budget and timeline ranges from the request body
         const budgetRange = parseFloat(req.body.budget[1]); // Convert to float and extract upper bound
-        const timelineRange = parseInt(req.body.timeline[1]); // Convert to integer and extract upper bound
+        const timelineRange = parseInt(req.body.timeline[0]); // Convert to integer and extract upper bound
         console.log(budgetRange)
         console.log(timelineRange)
         // Generate image based on different combinations of budget and timeline
@@ -82,11 +82,21 @@ app.post('/', async (req, res) => {
                     image = '/images/f.jpg';
                 }
             }
-        } else if (budgetRange >= 10000 && budgetRange <= 20000 && timelineRange <= 3) {
-            if (selectedStyle === 'Scandistyle') {
-                image = '/images/g.jpg';
-            } else if (selectedStyle === 'Aegeanstyle') {
-                image = '/images/h.jpg';
+        } else if (budgetRange >= 10000 && budgetRange <= 20000) {
+            if (timelineRange > 3 && timelineRange <= 6) {
+                if (selectedStyle === 'Scandistyle') {
+                    image = '/images/e.jpg';
+                } else if (selectedStyle === 'Aegeanstyle') {
+                    image = '/images/d.jpg';
+                }
+            }else if (timelineRange <= 3){
+                image = '/images/a.jpg';
+            }
+        } else if (budgetRange >20000){
+            if (timelineRange > 3 && timelineRange <= 6) {
+                image = '/images/c.jpg';
+            } else if (timelineRange <= 3){
+                image = '/images/b.jpg';
             }
         }
         console.log(image)
