@@ -28,10 +28,10 @@ const model = "jagilley/controlnet-seg:f967b165f4cd2e151d11e7450a8214e5d22ad2007
 let imgurl = '';
 
 const promptStrMap = {
-    'Scandistyle': 'white oak wood floor, cinematic, minimalist apartment bedroom, modernism furnishings, beige and white tone, fabric,natural sunlight, Photograph, contemporary living room, soft light of morning, integration matte stone features wall, unified color scheme of soothing white tones, creating a white and inviting atmosphere, full height window with balcony, a minimalist bed and furniture',
-    'Jaapanesestyle': 'bedroom, industrial vibe, raw and rugged elements with sleek, modern accents. Incorporate metal, exposed concrete. Consider minimalist furniture, vintage lighting fixtures, and urban-inspired decor to complete the look.',
-    'Naturalstyle': 'bedroom, natural vibe',
-    'Aegeanstyle': 'bedroom, Aegean style'
+    'scandinavian': 'white oak wood floor, cinematic, minimalist apartment bedroom, modernism furnishings, beige and white tone, fabric,natural sunlight, Photograph, contemporary living room, soft light of morning, integration matte stone features wall, unified color scheme of soothing white tones, creating a white and inviting atmosphere, full height window with balcony, a minimalist bed and furniture',
+    'japanese': 'bedroom, industrial vibe, raw and rugged elements with sleek, modern accents. Incorporate metal, exposed concrete. Consider minimalist furniture, vintage lighting fixtures, and urban-inspired decor to complete the look.',
+    'natural': 'bedroom, natural vibe',
+    'aegean': 'bedroom, Aegean style'
 };
 
 // app.get('/', (req, res) => {
@@ -152,27 +152,27 @@ app.post('/', async (req, res) => {
         let image = '';
         if (budgetRange >= 0 && budgetRange < 10000) {
             if (timelineRange > 3 && timelineRange <= 6) {
-                if (selectedStyle === 'Scandistyle') {
+                if (selectedStyle === 'scandinavian') {
                     image = '/images/a.jpg';
-                } else if (selectedStyle === 'Aegeanstyle') {
+                } else if (selectedStyle === 'aegean') {
                     image = '/images/b.jpg';
-                } else if (selectedStyle === 'Japanesestyle') {
+                } else if (selectedStyle === 'japanese') {
                     image = '/images/c.jpg';
                 }
             } else if (timelineRange > 6 && timelineRange <= 12) {
-                if (selectedStyle === 'Scandistyle') {
+                if (selectedStyle === 'scandinavian') {
                     image = '/images/d.jpg';
-                } else if (selectedStyle === 'Aegeanstyle') {
+                } else if (selectedStyle === 'aegean') {
                     image = '/images/e.jpg';
-                } else if (selectedStyle === 'Japanesestyle') {
+                } else if (selectedStyle === 'japanese') {
                     image = '/images/f.jpg';
                 }
             }
         } else if (budgetRange >= 10000 && budgetRange <= 20000) {
             if (timelineRange > 3 && timelineRange <= 6) {
-                if (selectedStyle === 'Scandistyle') {
+                if (selectedStyle === 'scandinavian') {
                     image = '/images/e.jpg';
-                } else if (selectedStyle === 'Aegeanstyle') {
+                } else if (selectedStyle === 'aegean') {
                     image = '/images/d.jpg';
                 }
             }else if (timelineRange <= 3){
