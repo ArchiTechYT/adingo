@@ -48,9 +48,8 @@
 
     /* Adjust AI-Design Result Display position */
     #aiResultImage {
-        width: 45%;
+        width: 100%;
         margin-top: 20px;
-        float: right; /* Aligns AI-Design Result Display to the right */
     }
 
     /* Adjusted color and font weight for the AI-Design Result Display */
@@ -104,6 +103,22 @@
     h1 {
             color: #FFC700; /* Updated color to #FFC700 */
         }
+
+    #btn_submit {
+         font-weight: bold; 
+        background-color: #FFC700; 
+        margin:5px;
+    }
+    #btn_clear {
+        font-weight: bold; 
+        background-color: #FFC700; 
+         margin:5px;
+    }
+    #btn_loveit {
+        font-weight: bold; 
+        background-color: #FFC700; 
+         margin:5px;
+    }
 </style>
 
 </head>
@@ -280,6 +295,7 @@
                     loveItButton.href = '/report?image=' + encodeURIComponent(aiResultImage);
                     loveItButton.className = 'btn btn-primary position-absolute bottom-0 end-0 m-3';
                     loveItButton.textContent = 'Love It';
+                    loveItButton.id="btn_loveit"
                     document.querySelector('.position-relative').appendChild(loveItButton);
                 }
 
