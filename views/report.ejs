@@ -32,7 +32,7 @@
         }
 
         h2 {
-            color: #343a40;
+            color: orange; /* Updated color to orange */
             font-weight: bold;
             text-transform: capitalize;
         }
@@ -44,6 +44,7 @@
 
         ul li {
             margin-bottom: 5px;
+            color: #6c757d; /* Updated color to grey */
         }
 
         .position-relative {
@@ -75,11 +76,10 @@
                 <!-- Upper section - Materials -->
                 <h2 class="text-center">Materials</h2>
                 <ul>
-                    <!-- List of materials -->
-                    <li>Material 1</li>
-                    <li>Material 2</li>
-                    <li>Material 3</li>
-                    <!-- Add more materials as needed -->
+                    <!-- Loop through materials -->
+                    <% materials.forEach(material => { %>
+                        <li><%= material.name %></li>
+                    <% }); %>
                 </ul>
             </div>
             <div class="col-md-6">
@@ -97,11 +97,10 @@
                 <!-- Lower section - Contractors & Suppliers -->
                 <h2 class="text-center">Contractors & Suppliers</h2>
                 <ul>
-                    <!-- List of contractors & suppliers -->
-                    <li>Contractor 1</li>
-                    <li>Contractor 2</li>
-                    <li>Contractor 3</li>
-                    <!-- Add more contractors & suppliers as needed -->
+                    <!-- Loop through contractors/suppliers -->
+                    <% suppliers.forEach(supplier => { %>
+                        <li><%= supplier.name %></li>
+                    <% }); %>
                 </ul>
             </div>
             <div class="col-md-6">
@@ -111,7 +110,7 @@
                 <!-- Button section -->
                 <div class="text-center mt-4">
                     <h2 class="purchase-report">Purchase Report</h2>
-                    <button class="btn btn-orange">$19.99</button>
+                    <a href="/purchase-report" class="btn btn-orange">$19.99</a>
                      <!-- Back button -->
                     <button class="btn btn-secondary back-btn" onclick="goBack()">Back</button>
                 </div>

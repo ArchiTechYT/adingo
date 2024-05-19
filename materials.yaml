@@ -1,0 +1,26 @@
+materials:
+  - name: TimberX-001
+    imageURL: /images/timberX-001.jpg
+  - name: TimberX-002
+    imageURL: /images/timberX-002.jpg
+  - name: TimberX-003
+    imageURL: /images/timberX-003.jpg
+  - name: OakX-001
+    imageURL: /images/oakX-001.jpg
+  - name: PineX-001
+    imageURL: /images/pineX-001.jpg
+  - name: MapleX-001
+    imageURL: /images/mapleX-001.jpg
+  - name: WalnutX-001
+    imageURL: /images/walnutX-001.jpg
+
+suppliers:
+  - name: NJ Supplier
+  - name: Smith Timber
+  - name: Woodland Suppliers
+  - name: Green Timber Co.
+  - name: Forest Products Ltd.
+  - name: Evergreen Lumber Supply
+  - name: TimberTech Solutions
+  - name: Nature's Harvest Timber
+  - name: Oakwood Forest Industries

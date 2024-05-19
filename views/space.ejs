@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Space Information</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Replace with your preferred font */
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .card {
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background-color: #f57c00; /* Orange */
+            color: #fff;
+            border-radius: 10px 10px 0 0;
+        }
+        .card-body {
+            background-color: #f8f9fa;
+        }
+        .btn-option {
+            border-radius: 20px;
+            border: 1px solid #ced4da;
+            background-color: #f8f9fa;
+            color: #343a40;
+            margin-bottom: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .btn-option.selected {
+            background-color: #f57c00; /* Orange */
+            color: #fff;
+        }
+        .btn-primary {
+            background-color: #f57c00; /* Orange */
+            border-color: #f57c00; /* Orange */
+            border-radius: 20px;
+        }
+        .btn-primary:hover {
+            background-color: #d84315; /* Darker Orange */
+            border-color: #d84315; /* Darker Orange */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header text-center">
+                        Your Space Information
+                    </div>
+                    <div class="card-body">
+                        <form id="spaceForm" action="/space" method="post">
+                            <p><strong>Room Type:</strong></p>
+                            <div class="btn-group-vertical">
+                                <button type="button" class="btn btn-option room-type" value="Bedroom">Bedroom</button>
+                                <button type="button" class="btn btn-option room-type" value="Bathroom">Bathroom</button>
+                                <button type="button" class="btn btn-option room-type" value="Living Room">Living Room</button>
+                            </div>
+                            <!-- Floor Area input -->
+                            <div class="form-group mt-3">
+                                <label for="floorArea">Floor Area (ft<sup>2</sup>):</label>
+                                <input type="number" id="floorArea" name="floorArea" class="form-control" placeholder="Enter floor area">
+                            </div>
+                            <!-- Ceiling Height input -->
+                            <div class="form-group">
+                                <label for="ceilingHeight">Ceiling Height (ft):</label>
+                                <input type="number" id="ceilingHeight" name="ceilingHeight" class="form-control" placeholder="Enter ceiling height">
+                            </div>
+                            <p><strong>Material:</strong></p>
+                            <div class="btn-group-vertical">
+                                <button type="button" class="btn btn-option material" value="Basic">Basic</button>
+                                <button type="button" class="btn btn-option material" value="Luxury">Luxury</button>
+                                <button type="button" class="btn btn-option material" value="High-end">High-end</button>
+                            </div>
+                            <!-- Submit button -->
+                            <div class="row mt-3">
+                                <div class="col-md-12 text-center">
+                                    <button type="button" id="submitBtn" class="btn btn-primary">Next</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Room Type selection
+            $('.room-type').click(function() {
+                $('.room-type').removeClass('selected');
+                $(this).addClass('selected');
+                // Store selected room type in sessionStorage
+                sessionStorage.setItem('roomType', $(this).val());
+            });
+
+            // Material selection
+            $('.material').click(function() {
+                $('.material').removeClass('selected');
+                $(this).addClass('selected');
+                // Store selected material in sessionStorage
+                sessionStorage.setItem('material', $(this).val());
+            });
+
+            // Floor Area input change
+            $('#floorArea').change(function() {
+                // Store floor area value in sessionStorage
+                sessionStorage.setItem('floorArea', $(this).val());
+            });
+
+            // Ceiling Height input change
+            $('#ceilingHeight').change(function() {
+                // Store ceiling height value in sessionStorage
+                sessionStorage.setItem('ceilingHeight', $(this).val());
+            });
+
+            // Submit form
+            $('#submitBtn').click(function() {
+                // Submit the form
+                $('#spaceForm').submit();
+            });
+        });
+    </script>
+</body>
+</html>

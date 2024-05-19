@@ -5,6 +5,8 @@ const port = process.env.PORT || 3000;
 const Replicate = require("replicate");
 const fs = require('fs');
 const { v1: uuidv1 } = require('uuid');
+const yaml = require('js-yaml');
+const ejs = require('ejs');
 require('dotenv').config()
 
 var bodyParser = require('body-parser')
@@ -32,14 +34,98 @@ const promptStrMap = {
     'Aegeanstyle': 'bedroom, Aegean style'
 };
 
+// app.get('/', (req, res) => {
+//     res.render('index', { imgurl });
+// });
 app.get('/', (req, res) => {
+    res.render('space');
+});
+app.get('/index', (req, res) => {
     res.render('index', { imgurl });
+});
+
+app.post('/space', (req, res) => {
+    const { roomType, floorArea, ceilingHeight, material } = req.body;
+    console.log('Room Type:', roomType);
+    console.log('Floor Area:', floorArea);
+    console.log('Ceiling Height:', ceilingHeight);
+    console.log('Material:', material);
+      res.render('index', { roomType, floorArea, ceilingHeight,material });
 });
 
 // Express route handling "Love It" button click
 app.get('/report', (req, res) => {
     const aiResultImageURL = req.query.image; // Retrieve image URL from query parameter
-    res.render('report', { aiResultImageURL }); // Render love-it-page.ejs and pass image URL
+    const { roomType, floorArea, ceilingHeight } = req.query; // Retrieve roomType, floorArea, and ceilingArea from query parameters
+    console.log("aiResultImageURL: ", aiResultImageURL);
+    console.log("roomType: ", roomType);
+    console.log("floorArea: ", floorArea);
+    console.log("ceilingHeight: ", ceilingHeight);
+    try {
+        // Read YAML file
+        const yamlData = fs.readFileSync('materials.yaml', 'utf8');
+        const data = yaml.load(yamlData);
+        console.log(data);
+        // Render EJS template with data
+        ejs.renderFile('views/report.ejs', {
+            aiResultImageURL: aiResultImageURL,
+            roomType: roomType,
+            floorArea: floorArea,
+            ceilingHeight: ceilingHeight,
+            materials: data.materials,
+            suppliers: data.suppliers
+        }, (err, html) => {
+            if (err) {
+                console.error('Error rendering template:', err);
+                res.status(500).send('Internal Server Error');
+            } else {
+                // Send the rendered HTML as the response
+                res.send(html);
+            }
+        });
+    } catch (error) {
+        console.error('Error reading YAML file:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
+
+// Define route handling the purchase button click
+app.get('/purchase-report', (req, res) => {
+   // const { roomType, floorArea, ceilingArea } = req.query; // Retrieve roomType, floorArea, and ceilingArea from query parameters
+    try {
+        // Read materials data from materials.yaml file
+        const yamlData = fs.readFileSync('materials.yaml', 'utf8');
+        const materialsData = yaml.load(yamlData);
+
+        // Extract materials and suppliers from the YAML data
+        const materials = materialsData.materials;
+        const suppliers = materialsData.suppliers;
+
+        // const roomDetails = {
+        //     title: roomType, // Use roomType as the title
+        //     background: 'grey',
+        //     color: 'black',
+        //     rows: [
+        //         { title: 'Location:Price', area: `Area: ${floorArea} sqft`, ceiling: `Floor-to-Ceiling: ${ceilingArea} ft` },
+        //         // Example row using the first material and supplier from the data
+        //         { material: materials[0].name, location: 'Wall', price: '$30/ft2', supplier: suppliers[0].name, image: materials[0].imageURL }
+        //         // Add more rows as needed
+        //     ]
+        // };
+
+        // Render the reportDetails.ejs template with the room details
+        res.render('reportDetails', { 
+            roomType: req.query.roomType,
+            // floorArea: req.query.floorArea,
+            // ceilingHeight: req.query.ceilingHeight,
+            materials: materials,
+            suppliers: suppliers,
+            // roomDetails: roomDetails 
+        });
+    } catch (error) {
+        console.error('Error rendering report details:', error);
+        res.status(500).send('Internal Server Error');
+    }
 });
 
 
@@ -116,3 +202,4 @@ app.post('/', async (req, res) => {
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
+

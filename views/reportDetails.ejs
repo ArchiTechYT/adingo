@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Details</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Custom CSS -->
+    <style>
+        /* Custom styles for the report details */
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .title-row {
+            background-color: orange; /* Updated background color to orange */
+            color: #343a40; /* Updated text color to dark grey */
+            font-weight: bold;
+            text-transform: capitalize;
+        }
+
+        .image-container img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+
+        /* Additional styles for buttons */
+        .button-container {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .button-container button {
+            margin: 5px;
+            background-color: orange; /* Updated button background color to orange */
+            color: #343a40; /* Updated button text color to dark grey */
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <!-- Room details table -->
+        <table class="table">
+            <thead class="title-row">
+                <tr>
+                    <th colspan="2">Room: <%= roomType %></th>
+                </tr>
+                <tr>
+                    <th>Type</th>
+                    <th>Location:Price</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Fake data entries -->
+                <% for (let i = 1; i <= 4; i++) { %>
+                <tr>
+                    <td>Paint</td>
+                    <td>Location:Price=Wall:$30/ft2<br>Material: Supplier Name</td>
+                    <td>
+                        <div class="image-container">
+                            <img src="/fake_image_<%= i %>.jpg" alt="Material Image">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Tile</td>
+                    <td>Location:Price=Floor:$20/ft2<br>Material: Supplier Name</td>
+                    <td>
+                        <div class="image-container">
+                            <img src="/fake_image_<%= i + 4 %>.jpg" alt="Material Image">
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Fee</td>
+                    <td>Location:Price=Consultant: $50/hr<br>Material: Supplier Name</td>
+                    <td></td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Buttons -->
+    <div class="button-container">
+        <!-- Go Back button -->
+        <button class="btn btn-primary" onclick="goBack()">Go Back</button>
+        <!-- Home button -->
+        <button class="btn btn-secondary" onclick="goHome()">Home</button>
+    </div>
+
+    <!-- JavaScript to handle button clicks -->
+    <script>
+        // Function to navigate back
+        function goBack() {
+            window.history.back();
+        }
+
+        // Function to go to home page
+        function goHome() {
+            window.location.href = "/";
+        }
+    </script>
+</body>
+</html>
