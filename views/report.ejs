@@ -67,6 +67,13 @@
             font-size: 24px;
             margin-bottom: 20px;
         }
+        /* Adjusted color and font weight for the AI-Design Result Display heading */
+        .ai-result-heading {
+            color: #FFC700; /* Changed color to orange */
+            font-weight: bold; /* Added bold font weight */
+            text-transform: capitalize;
+        }
+       
     </style>
 </head>
 <body>
@@ -74,7 +81,7 @@
         <div class="row">
             <div class="col-md-6">
                 <!-- Upper section - Materials -->
-                <h2 class="text-center">Materials</h2>
+                <h2 class="text-center" style="color:#FFC700">Materials</h2>
                 <ul>
                     <!-- Loop through materials -->
                     <% materials.forEach(material => { %>
@@ -85,7 +92,7 @@
             <div class="col-md-6">
                 <!-- AI Design Result Display section -->
                 <div class="position-relative">
-                    <h1 class="text-center">AI-Design Result Display</h1>
+                    <h2 class="text-center mb-4 ai-result-heading" >AI-Design Result Display</h2>
                     <div class="position-relative">
                         <img src="<%= aiResultImageURL %>" class="img-fluid mx-auto d-block" alt="AI Generated Image">
                     </div>
@@ -95,7 +102,7 @@
         <div class="row mt-5">
             <div class="col-md-6">
                 <!-- Lower section - Contractors & Suppliers -->
-                <h2 class="text-center">Contractors & Suppliers</h2>
+                <h2 class="text-center" style="color:#FFC700">Contractors & Suppliers</h2>
                 <ul>
                     <!-- Loop through contractors/suppliers -->
                     <% suppliers.forEach(supplier => { %>
@@ -105,14 +112,14 @@
             </div>
             <div class="col-md-6">
                 <!-- Total Cost -->
-                <h2 class="text-center">Total Cost:</h2>
+                <h2 class="text-center" style="color:#FFC700">Total Cost:</h2>
                 <p class="text-center">$ How Much Dollars</p>
                 <!-- Button section -->
                 <div class="text-center mt-4">
-                    <h2 class="purchase-report">Purchase Report</h2>
-                    <a href="/purchase-report" class="btn btn-orange">$19.99</a>
+                    <h2 class="purchase-report" style="color:#FFC700">Purchase Report</h2>
+                    <a href="/purchase-report" class="btn btn-primary" style="background-color:#FFC700">$19.99</a>
                      <!-- Back button -->
-                    <button class="btn btn-secondary back-btn" onclick="goBack()">Back</button>
+                    <button class="btn btn-secondary back-btn" style="background-color:#FFC700" onclick="goBack()">Back</button>
                 </div>
             </div>
         </div>

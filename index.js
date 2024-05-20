@@ -136,8 +136,8 @@ app.post('/', async (req, res) => {
 
     if (action === 'generate') {
         const selectedStyle = req.body ? req.body.style : undefined;
-
-        if (!selectedStyle || !promptStrMap[selectedStyle]) {
+        console.log('selectedStyle = ' + selectedStyle)
+        if (!selectedStyle) {
             return res.status(400).json({ error: 'Missing style or invalid style parameter' });
         }
 
@@ -150,39 +150,79 @@ app.post('/', async (req, res) => {
         console.log(timelineRange)
         // Generate image based on different combinations of budget and timeline
         let image = '';
+
+        // low budget
         if (budgetRange >= 0 && budgetRange < 10000) {
-            if (timelineRange > 3 && timelineRange <= 6) {
-                if (selectedStyle === 'scandinavian') {
-                    image = '/images/a.jpg';
-                } else if (selectedStyle === 'aegean') {
-                    image = '/images/b.jpg';
-                } else if (selectedStyle === 'japanese') {
-                    image = '/images/c.jpg';
+          //mid time
+            if (timelineRange < 6 ) {
+                if (selectedStyle === 'modern') {
+                    image = '/images/modern/1.png';
+                } else if (selectedStyle === 'tropical') {
+                    image = '/images/tropical/3_upscale.png';
+                } else if (selectedStyle === 'wabi-sabi') {
+                    image = '/images/wabi-sabi/5_upscale.png';
+                } else {
+                    image = '/images/scandinavian/4_upscale.png'
                 }
-            } else if (timelineRange > 6 && timelineRange <= 12) {
-                if (selectedStyle === 'scandinavian') {
-                    image = '/images/d.jpg';
-                } else if (selectedStyle === 'aegean') {
-                    image = '/images/e.jpg';
-                } else if (selectedStyle === 'japanese') {
-                    image = '/images/f.jpg';
+                //long time
+            } else {
+                if (selectedStyle === 'modern') {
+                    image = '/images/modern/10-upscale.png';
+                } else if (selectedStyle === 'tropical') {
+                    image = '/images/tropical/2.png';
+                } else if (selectedStyle === 'wabi-sabi') {
+                    image = '/images/wabi-sabi/1_upscale.png';
+                }else {
+                   image = '/images/scandinavian/2.png';
                 }
             }
         } else if (budgetRange >= 10000 && budgetRange <= 20000) {
-            if (timelineRange > 3 && timelineRange <= 6) {
-                if (selectedStyle === 'scandinavian') {
-                    image = '/images/e.jpg';
-                } else if (selectedStyle === 'aegean') {
-                    image = '/images/d.jpg';
+          //mid budget
+            if (timelineRange > 3) {
+              // long time
+                if (selectedStyle === 'modern') {
+                    image = '/images/modern/10-upscale.png';
+                } else if (selectedStyle === 'tropical') {
+                    image = '/images/tropical/3_upscale.png';
+                }else if (selectedStyle === 'wabi-sabi') {
+                    image = '/images/wabi-sabi/1_upscale.png';
+                }else {
+                   image = '/images/scandinavian/4_upscale.png';
                 }
-            }else if (timelineRange <= 3){
-                image = '/images/a.jpg';
+            }else{
+                 if (selectedStyle === 'modern') {
+                    image = '/images/modern/1.png';
+                } else if (selectedStyle === 'tropical') {
+                    image = '/images/tropical/2.png';
+                }else if (selectedStyle === 'wabi-sabi') {
+                    image = '/images/wabi-sabi/5_upscale.png';
+                } else {
+                   image = '/images/scandinavian/2.png';
+                }
             }
         } else if (budgetRange >20000){
-            if (timelineRange > 3 && timelineRange <= 6) {
-                image = '/images/c.jpg';
-            } else if (timelineRange <= 3){
-                image = '/images/b.jpg';
+          // high bidget
+            if (timelineRange > 3) {
+              //long time
+                if (selectedStyle === 'modern') {
+                    image = '/images/modern/10-upscale.png';
+                } else if (selectedStyle === 'tropical') {
+                    image = '/images/tropical/3_upscale.jpg';
+                }else if (selectedStyle === 'wabi-sabi') {
+                    image = '/images/wabi-sabi/1_upscale.png';
+                } else {
+                   image = '/images/scandinavian/4_upscale.png';
+                }
+            } else {
+               if (selectedStyle === 'modern') {
+                    image = '/images/modern/1.png';
+                } else if (selectedStyle === 'tropical') {
+                    image = '/images/tropical/2.jpg';
+                }else if (selectedStyle === 'wabi-sabi') {
+                    image = '/images/wabi-sabi/5_upscale.png';
+                } else {
+                   image = '/images/scandinavian/2.png';
+                }
             }
         }
         console.log(image)
